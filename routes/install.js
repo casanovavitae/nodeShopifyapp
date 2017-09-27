@@ -14,7 +14,11 @@ router.get('/', function(req, res, next) {
     redirect_uri: config.redirect_uri,
     nonce: noncestring 
   });
+  
   var auth_url = Shopify.buildAuthURL();
+
+  console.log('auth_url',auth_url);
+
   res.redirect(auth_url);
 });
 
