@@ -6,11 +6,10 @@ class App extends React.Component{
     constructor(props) {
         super(props);
         this.state = {data: ''};
-
     }
 
     componentDidMount() {
-        console.log('GrandChild did mount.');
+        console.log('DidMount');
         axios.defaults.headers.common['X-Shopify-Access-Token'] = this.props.token;
         axios.get('https://storetestdt.myshopify.com/admin/products.json?limit=10')
         .then(function (data) {
@@ -27,6 +26,8 @@ class App extends React.Component{
       return(
         <div>
             <h1>Insert the rest of your app here.</h1>
+            <hr/>
+            <h4>Data:</h4>
             <p>{this.state.data}</p>
         </div>
  
