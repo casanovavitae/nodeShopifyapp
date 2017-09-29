@@ -1,7 +1,5 @@
-//const React = require('react');
 import React from 'react';
 import {render} from 'react-dom';
-import {Page, Card} from '@shopify/polaris';
 
 class App extends React.Component{
     constructor(props) {
