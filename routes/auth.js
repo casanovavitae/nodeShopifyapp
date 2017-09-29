@@ -4,7 +4,7 @@ var shopifyAPI = require('shopify-node-api');
 var config = require('../config/config');
 var React = require('react');
 var ReactDomServer = require('react-dom/server') ;
-const Component = require('../component');
+const Component = require('../components/component');
 
 
 router.get('/', function(req, res){
