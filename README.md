@@ -1,5 +1,4 @@
-# Polaris
-[![CircleCI](https://circleci.com/gh/Shopify/polaris.svg?style=svg)](https://circleci.com/gh/Shopify/polaris)
+# NodeJs React App for Shopify.
 
 #### Polaris is a React component library designed to help developers create the best experience for merchants who use Shopify. Visit the [Polaris style guide](https://polaris.shopify.com) to learn more.
 
