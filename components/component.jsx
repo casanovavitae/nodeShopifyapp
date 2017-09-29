@@ -10,11 +10,10 @@ class App extends React.Component{
     render(){
         //this.props.token use this token to  make request
       return(
-        <Page title="Example application">
-            <Card sectioned>
-                Insert the rest of your app here.
-            </Card>
-        </Page>
+        <div>
+            <h1>Insert the rest of your app here.</h1>
+        </div>
+ 
       )  
     }
 }

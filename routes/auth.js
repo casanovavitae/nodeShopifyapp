@@ -13,6 +13,7 @@ router.get('/', function(req, res){
     var query_params = req.query;
     config.nonce = query_params.state;
     var Shopify = new shopifyAPI(config);
+    console.log("get");
     Shopify.exchange_temporary_token(query_params, function(err, data){
         var html = ReactDomServer.renderToString(
             React.createElement(Component,{token: data['access_token']})
