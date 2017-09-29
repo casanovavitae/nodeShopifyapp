@@ -29,6 +29,7 @@ class App extends React.Component{
             <hr/>
             <h4>Data:</h4>
             <p>{this.state.data}</p>
+            <a href="getData/shop">get Shop Data</a>
         </div>
  
       )  
