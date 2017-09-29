@@ -262,20 +262,6 @@ var config = {
 }
 ```
 
-# Become a Shopify App Developer
+# Shopify App Developer
 
 [Join the Shopify Partner Program](https://app.shopify.com/services/partners/signup?ref=grenadeapps)
-
-# Testing
-
-~~~
-npm install
-npm test
-~~~
-
-
-# Contributing
-
-Shopify has been kind enough to list this module on their [Official Documentation](http://docs.shopify.com/api/libraries/node?ref=grenadeapps). As such it is important that this module remain as bug free and up to date as possible in order to make the experience with node.js/Shopify as seamless as possible.
-
-I will continue to make updates as often as possible but we are more than happy to review any feature requests and will be accepting pull requests as well.

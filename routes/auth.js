@@ -1,3 +1,6 @@
+require('babel-register')({
+  presets: ['es2015','react']
+})
 var express = require('express');
 var router = express.Router();
 var shopifyAPI = require('shopify-node-api');
