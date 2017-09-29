@@ -4,11 +4,7 @@
 
 shopify-node-api [![Build Status](https://travis-ci.org/christophergregory/shopify-node-api.svg?branch=master)](https://travis-ci.org/christophergregory/shopify-node-api)
 ================
-
-OAuth2 Module for Shopify API
-
-[![NPM](https://nodei.co/npm/shopify-node-api.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/shopify-node-api/)
-
+OAuth2 Module for Shopify API using node and react
 ## Install
 ```
 npm install -S shopify-node-api
