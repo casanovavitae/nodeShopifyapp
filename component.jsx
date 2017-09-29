@@ -18,11 +18,21 @@ class App extends React.Component{
             <Card sectioned>
             This Insert the rest of your app here, including those components detailed below, which can now communicate with the Embedded App SDK.
             </Card>
+            <Card sectioned>
+            Products Admin:
+            {this.showProducts}
+            </Card>
         </Page>
       )  
     }
 
-    componentDidUpdate(){
+    showProduct(){
+        (this.state.data).forEach(function (value) {
+            return <li>Product</li>
+        });
+    }
+
+    componentWillMount () {
         axios.defaults.headers.common['X-Shopify-Access-Token'] = this.props.token;
         axios.get('/admin/products.json')
         .then(function (response) {
