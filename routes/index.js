@@ -12,11 +12,11 @@ const Component = require('../component');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  var html = ReactDomServer.renderToString(
+  res.render('index', { title: 'Express' });
+  /*var html = ReactDomServer.renderToString(
     React.createElement(Component,{obj:'txt'})
   );
-  res.send(html);
+  res.send(html);*/
 });
 
 module.exports = router;
