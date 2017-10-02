@@ -48,75 +48,6 @@ var Shopify = new shopifyAPI({
 Note: If you are building a [private Shopify app](https://docs.shopify.com/api/authentication/creating-a-private-app?ref=grenadeapps), then you don't need to go through the OAuth authentication process. You can skip ahead to the Making Requests section.
 
 
-### CAUTION!!!
-
-If no config object is passed into the module upon initialization, an error will be thrown!
-```js
-var Shopify = new shopifyAPI(); // No config object passed in
-```
-
-will throw an error like:
-
-~~~
-> Error: ShopifyAPI module expects a config object
-> Please see documentation at: https://github.com/sinechris/shopify-node-api
-~~~
-
-## Usage
-
-```js
-
-// Building the authentication url
-
-var auth_url = Shopify.buildAuthURL();
-
-// Assuming you are using the express framework
-// you can redirect the user automatically like so
-res.redirect(auth_url);
-```
-
-
-## Exchanging the temporary token for a permanent one
-
-After the user visits the authenticaion url they will be redirected to the location you specified in the configuration redirect_url parameter.
-
-Shopify will send along some query parameters including: code (your temporary token), signature, shop, state and timestamp. This module will verify the authenticity of the request from shopify as outlined here in the [Shopify OAuth Docs](http://docs.shopify.com/api/tutorials/oauth?ref=grenadeapps)
-
-```js
-
-// Again assuming you are using the express framework
-
-app.get('/finish_auth', function(req, res){
-
-  var Shopify = new shopifyAPI(config), // You need to pass in your config here
-    query_params = req.query;
-
-  Shopify.exchange_temporary_token(query_params, function(err, data){
-    // This will return successful if the request was authentic from Shopify
-    // Otherwise err will be non-null.
-    // The module will automatically update your config with the new access token
-    // It is also available here as data['access_token']
-  });
-
-});
-
-```
-
-### Note:
-
-Once you have initially received your access token you can instantiate a new instance at a later date like so:
-
-```js
-var Shopify = new shopifyAPI({
-  shop: 'MYSHOP', // MYSHOP.myshopify.com
-  shopify_api_key: '', // Your API key
-  shopify_shared_secret: '', // Your Shared Secret
-  access_token: 'token', //permanent token
-});
-
-```
-
-
 
 ## Making requests
 
@@ -194,60 +125,6 @@ Shopify.delete('/admin/products/1234567.json', function(err, data, headers){
 });
 ```
 
-## Errors
-
-Every response from Shopify's API is parsed and checked if it looks like an error. Three keys are used to determine an error response: 'error_description', 'error', and 'errors'. If any of these keys are found in the response, an error object will be made with the first found key's value as the error message and the response's status code as the error's code. This error object will be passed as the first parameter in the callback, along with the response JSON and response headers.
-
-If an error occurs while making a request, the callback will be passed an error object provided from `https` as the only parameter.
-
-## OPTIONS
-
-
-### Verbose Mode
-
-By default, shopify-node-api will automatically console.log all headers and responses. To suppress these messages, simply set verbose to false.
-
-```js
-var config = {
-  ...
-  verbose: false
-}
-```
-
-### Verify Shopify Request
-
-**Note**: *This module has been updated to use HMAC parameter instead of the deprecated "signature"*.
-
-From the [shopify docs](http://docs.shopify.com/api/tutorials/oauth?ref=grenadeapps):
-
-"Every request or redirect from Shopify to the client server includes a signature and hmac parameters that can be used to ensure that it came from Shopify. **The signature attribute is deprecated due to vulnerabilities in how the signature is generated.**"
-
-The module utilizes the *is_valid_signature* function to verify that requests coming from shopify are authentic. You can use this method in your code to verify requests from Shopify. Here is an example of its use in the this module:
-
-```js
-ShopifyAPI.prototype.exchange_temporary_token = function(query_params, callback) {
-
-  // Return an error if signature is not valid
-  if (!self.is_valid_signature(query_params)) {
-    return callback(new Error("Signature is not authentic!"));
-  }
-
-  // do more things...
-}
-```
-
-You can call it from an initialized Shopify object like so
-
-```js
-Shopify.is_valid_signature(query_params);
-```
-
-To verify a Shopify signature that does not contain a state parameter, just pass true as the second argument of `is_valid_signature`:
-
-```js
-Shopify.is_valid_signature(query_params, true);
-```
-*This is required when checking a non-authorization query string, for example the query string passed when the app is clicked in the user's app store*
 
 ### API Call Limit Options
 
@@ -261,7 +138,7 @@ var config = {
   backoff_delay: 1000 // 1 second (in ms) => wait 1 second if backoff option is exceeded
 }
 ```
-
+s
 # Shopify App Developer
 
 [Join the Shopify Partner Program](https://app.shopify.com/services/partners/signup?ref=grenadeapps)
